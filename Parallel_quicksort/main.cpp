@@ -162,3 +162,41 @@ void quicksort(std::vector<int>& array, int left, int right, ThreadPool& pool) {
 		}
 	}
 }
+
+int main() {
+	std::vector<int> data = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+
+	std::cout << "Sorting with ThreadPool..." << std::endl;
+	auto start_time = std::chrono::high_resolution_clock::now();
+
+	ThreadPool pool(std::thread::hardware_concurrency()); // Создание ThreadPool
+
+	std::shared_ptr<std::promise<void>> allTasksFinished = std::make_shared<std::promise<void>>();
+
+	{
+		// Добавление задачи в пул потоков для сортировки массива
+		pool.enqueue([&data, &pool, allTasksFinished]() {
+			quicksort(data, 0, data.size() - 1, pool);
+			allTasksFinished->set_value();
+			});
+	}
+
+	allTasksFinished->get_future().wait(); // Ожидание завершения всех задач
+
+	auto end_time = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> elapsed = end_time - start_time;
+	std::cout << "ThreadPool Sorting took " << elapsed.count() << " seconds" << std::endl;
+
+	std::vector<int> data_copy = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+
+	std::cout << "Sorting without ThreadPool..." << std::endl;
+	start_time = std::chrono::high_resolution_clock::now();
+
+	quicksort(data_copy, 0, data_copy.size() - 1, pool); // Сортировка без использования ThreadPool
+
+	end_time = std::chrono::high_resolution_clock::now();
+	elapsed = end_time - start_time;
+	std::cout << "Single-threaded Sorting took " << elapsed.count() << " seconds" << std::endl;
+
+	return 0;
+}

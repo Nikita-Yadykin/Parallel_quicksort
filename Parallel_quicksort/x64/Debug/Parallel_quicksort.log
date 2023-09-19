@@ -1,4 +1,4 @@
 ﻿  main.cpp
-D:\CPP Projects\Многопоточное программирование\Модуль 30. Пул потоков\Parallel_quicksort\main.cpp(179,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP Projects\Многопоточное программирование\Модуль 30. Пул потоков\Parallel_quicksort\main.cpp(195,46): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Parallel_quicksort.vcxproj -> D:\CPP Projects\Многопоточное программирование\Модуль 30. Пул потоков\Parallel_quicksort\x64\Debug\Parallel_quicksort.exe
+D:\CPP Projects\Repositories\Parallel_quicksort\Parallel_quicksort\main.cpp(179,35): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP Projects\Repositories\Parallel_quicksort\Parallel_quicksort\main.cpp(195,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Parallel_quicksort.vcxproj -> D:\CPP Projects\Repositories\Parallel_quicksort\Parallel_quicksort\x64\Debug\Parallel_quicksort.exe
